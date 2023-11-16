@@ -32,15 +32,14 @@ class RappitenderoModel:
         except Error as e:
             print("Error al leer rappitenderos", e)
 
-    def update_rappitendero(self, id_rappitendero, nombre, afiliado, dias_trabajados, horas_trabajadas, calificacion, telefono):
+    def update_rappitendero(self, id, nombre, afiliado_salud, dias_trabajados, horas_trabajadas, calificacion, telefono):
         try:
-            sql = "UPDATE Rappitendero SET NombreRappitendero = %s, AfiliadosAud = %s, DiasTrabajados = %s, HorasTrabajadas = %s, Calificacion = %s, NumeroTelefono = %s WHERE idRappitendero = %s"
-            val = (nombre, afiliado, dias_trabajados, horas_trabajadas, calificacion, telefono, id_rappitendero)
-            self.cursor.execute(sql, val)
+            query = f"UPDATE rappitendero SET NombreRappitendero=%s, AfiliadoSalud=%s, DiasTrabajados=%s, HorasTrabajadas=%s, Calificacion=%s, NumeroTelefonico=%s WHERE idRappitendero=%s"
+            values = (nombre, afiliado_salud, dias_trabajados, horas_trabajadas, calificacion, telefono, id)
+            self.cursor.execute(query, values)
             self.connection.commit()
-            print("Rappitendero actualizado exitosamente")
         except Error as e:
-            print("Error al actualizar rappitendero", e)
+            print("Error al actualizar el Rappitendero", e)
 
     def delete_rappitendero(self, id_rappitendero):
         try:
@@ -51,6 +50,7 @@ class RappitenderoModel:
             print("Rappitendero eliminado exitosamente")
         except Error as e:
             print("Error al eliminar rappitendero", e)
+            
     def buscar_rappitendero_por_nombre(self, nombre):
         try:
             self.cursor.execute("SELECT * FROM Rappitendero WHERE NombreRappitendero = %s", (nombre,))
