@@ -23,6 +23,13 @@ class RappitenderoController:
         except Exception as e:
             self.view.show_message("Error al crear rappitendero: " + str(e))
     
+    def delete_rappitendero(self, id_rappitendero):
+        try:
+            self.model.delete_rappitendero(id_rappitendero)
+        except Exception as e:
+            raise e
+    
+    
     def get_all_rappitenderos(self):
         try:
             rappitenderos = self.model.read_rappitenderos()
@@ -42,12 +49,9 @@ class RappitenderoController:
         except Exception as e:
             self.view.show_message(f"Error al buscar rappitendero: {e}")
 
-    def update_rappitendero(self, id_rappitendero, nombre, afiliado_salud, dias_trabajados, horas_trabajadas, calificacion, telefono):
-        try:
-            self.model.update_rappitendero(id_rappitendero, nombre, afiliado_salud, int(dias_trabajados), int(horas_trabajadas), int(calificacion), telefono)
-            self.view.show_message("Rappitendero actualizado exitosamente")
-        except Exception as e:
-            self.view.show_message(f"Error al actualizar rappitendero: {e}")
+    def update_rappitendero(self, id_to_update, nombre, afiliado_salud, dias_trabajados, horas_trabajadas, calificacion, telefono):
+        self.model.update_rappitendero(id_to_update, nombre, afiliado_salud, dias_trabajados, horas_trabajadas, calificacion, telefono)
+
 
     def delete_rappitendero(self, id_rappitendero):
         try:
