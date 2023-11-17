@@ -5,7 +5,7 @@ from controller import RappitenderoController
 
 def main():
     root = tk.Tk()
-    model = RappitenderoModel('localhost', 'root', 'CONTRASENA.', 'rappi2')  # Asegúrate de usar la contraseña correcta aquí
+    model = RappitenderoModel('localhost', 'root', 'CONTRASENA.', 'rappi2')  
     view = RappitenderoView(root, None)  # Inicialmente pasamos None para el controlador
     controller = RappitenderoController(view, model)
     view.controller = controller  # Ahora establecemos el controlador en la vista
