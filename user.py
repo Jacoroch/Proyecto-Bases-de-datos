@@ -185,7 +185,7 @@ class UsuarioController:
 
     def crear_usuario(self):
         nombre = self.view.entry_nombre.get()
-        tipo_cliente = self.view.entry_tipo.get()
+        tipo_cliente = self.view.entry_tipo_cliente.get()  # Corregido de entry_tipo a entry_tipo_cliente
         fecha_nac = self.view.entry_fecha_nac.get()
         contrasena = self.view.entry_contrasena.get()
         email = self.view.entry_email.get()
@@ -196,9 +196,9 @@ class UsuarioController:
         
         try:
             self.model.execute_query(query, data)
-            messagebox.showinfo("Éxito", "Usuario creado correctamente")
+            self.view.mostrar_mensaje("Usuario creado correctamente")
         except Exception as e:
-            messagebox.showerror("Error", f"Error al crear el usuario: {e}")
+            self.view.mostrar_mensaje(f"Error al crear el usuario: {e}")
             
     def buscar_usuario(self):
         nombre = self.view.entry_nombre.get()
